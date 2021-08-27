@@ -1,0 +1,464 @@
+<div class="tab item-betterRolls" data-group="primary" data-tab="betterRollsSnS">
+
+	{{#if flags.betterRollsSnS.critRange}}
+	<div class="form-group">
+		<label>{{localize "brSnS.settings.critThreshold"}}</label>
+		<input
+			type="number"
+			name="flags.betterRollsSnS.critRange.value"
+			value="{{flags.betterRollsSnS.critRange.value}}"
+			data-dtype="{{flags.betterRollsSnS.critRange.type}}"
+		/>
+	</div>
+	{{/if}}
+
+	{{#if flags.betterRollsSnS.critDamage}}
+	<div class="form-group select">
+		<label>{{localize "brSnS.settings.critDamage.name"}}</label>
+		<select name="flags.betterRollsSnS.critDamage.value">
+			{{#select flags.betterRollsSnS.critDamage.value}}
+			<option value="">{{ localize "SNS.None" }}</option>
+	  		{{#each flags.betterRollsSnS.quickDamage.value as |part i| }}
+			<option value="{{i}}">
+				{{i}}: {{lookup ../flags.betterRollsSnS.quickDamage.context i}} ({{lookup ../SNS.damageTypes (lookup (lookup ../item.data.data.damage.parts i) 1)}})
+			</option>
+			{{/each}}
+			{{/select}}
+	</select>
+	</div>
+	{{/if}}
+
+	<h3 class="form-header">
+		<label>{{localize "brSnS.settings.quickRollsLabel"}}</label>
+	</h3>
+
+	<!-- <div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickPrompt}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickPrompt.value"
+				value="flags.betterRollsSnS.quickPrompt.value"
+				data-dtype="{{flags.betterRollsSnS.quickPrompt.type}}"
+				{{checked flags.betterRollsSnS.quickPrompt.value}}
+			/>
+			{{localize "brSnS.settings.prompt"}}
+		</label>
+		{{/if}}
+	</div> -->
+
+	<div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickDesc}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickDesc.value"
+				value="flags.betterRollsSnS.quickDesc.value"
+				data-dtype="{{flags.betterRollsSnS.quickDesc.type}}"
+				{{checked flags.betterRollsSnS.quickDesc.value}}
+			/>
+			{{localize "brSnS.settings.description"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickAttack}} {{#if isAttack}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickAttack.value"
+				value="flags.betterRollsSnS.quickAttack.value"
+				data-dtype="{{flags.betterRollsSnS.quickAttack.type}}"
+				{{checked flags.betterRollsSnS.quickAttack.value}}
+			/>
+			{{localize "brSnS.settings.attackRoll"}}
+		</label>
+		{{/if}}{{/if}}
+
+		{{#if flags.betterRollsSnS.quickSave}} {{#if isSave}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickSave.value"
+				value="flags.betterRollsSnS.quickSave.value"
+				data-dtype="{{flags.betterRollsSnS.quickSave.type}}"
+				{{checked flags.betterRollsSnS.quickSave.value}}
+			/>
+			{{localize "brSnS.settings.saveDC"}}</label>
+		{{/if}}{{/if}}
+
+		{{#if flags.betterRollsSnS.quickCheck}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickCheck.value"
+				value="flags.betterRollsSnS.quickCheck.value"
+				data-dtype="{{flags.betterRollsSnS.quickCheck.type}}"
+				{{checked flags.betterRollsSnS.quickCheck.value}}
+			/>
+			{{localize "brSnS.settings.check"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickProperties}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickProperties.value"
+				value="flags.betterRollsSnS.quickProperties.value"
+				data-dtype="{{flags.betterRollsSnS.quickProperties.type}}"
+				{{checked flags.betterRollsSnS.quickProperties.value}}
+			/>
+			{{localize "brSnS.settings.properties"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickVersatile}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickVersatile.value"
+				value="flags.betterRollsSnS.quickVersatile.value"
+				data-dtype="{{flags.betterRollsSnS.quickVersatile.type}}"
+				{{checked flags.betterRollsSnS.quickVersatile.value}}
+			/>
+			{{localize SNS.weaponProperties.ver}}
+		</label>
+		{{/if}}
+
+		{{#if itemHasTemplate}}
+		{{#if flags.betterRollsSnS.quickTemplate}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickTemplate.value"
+				value="flags.betterRollsSnS.quickTemplate.value"
+				data-dtype="{{flags.betterRollsSnS.quickTemplate.type}}"
+				{{checked flags.betterRollsSnS.quickTemplate.value}}
+			/>
+			{{localize "brSnS.settings.useTemplate"}}
+		</label>
+		{{/if}}
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickOther}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickOther.value"
+				value="flags.betterRollsSnS.quickOther.value"
+				data-dtype="{{flags.betterRollsSnS.quickOther.type}}"
+				{{checked flags.betterRollsSnS.quickOther.value}}
+			/>
+			{{localize "brSnS.settings.otherFormula"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickFlavor}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickFlavor.value"
+				value="flags.betterRollsSnS.quickFlavor.value"
+				data-dtype="{{flags.betterRollsSnS.quickFlavor.type}}"
+				{{checked flags.betterRollsSnS.quickFlavor.value}}
+			/>
+			{{localize "brSnS.settings.quickFlavor"}}
+		</label>
+		{{/if}}
+
+		{{#if canConsume}}
+		<div class="brSnS-consume-box">
+			<span><label class="brSnS-consume-title">{{localize "brSnS.settings.consume"}}</label></span>
+			<span class="brSnS-consume-container">
+			{{#if hasQuantity}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.value.quantity"
+						value="flags.betterRollsSnS.quickCharges.value.quantity"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.value.quantity}}
+					/>
+					{{localize "brSnS.settings.consumeQuantity"}}
+				</label>
+			{{/if}}
+
+			{{#if hasUses}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.value.use"
+						value="flags.betterRollsSnS.quickCharges.value.use"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.value.use}}
+					/>
+					{{localize "brSnS.settings.consumeUses"}}
+				</label>
+			{{/if}}
+
+			{{#if hasResource}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.value.resource"
+						value="flags.betterRollsSnS.quickCharges.value.resource"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.value.resource}}
+					/>
+					{{localize "brSnS.settings.consumeResource"}}
+				</label>
+			{{/if}}
+
+			{{#if hasCharge}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.value.charge"
+						value="flags.betterRollsSnS.quickCharges.value.charge"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.value.charge}}
+					/>
+					{{localize "brSnS.settings.consumeRecharge"}}
+				</label>
+			{{/if}}
+			</span>
+			</div>
+		{{/if}}
+	</div>
+
+	<div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickDamage}}
+		{{#each flags.betterRollsSnS.quickDamage.value as |part i| }}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickDamage.value.{{i}}"
+				value= "flags.betterRollsSnS.quickDamage.value.{{i}}"
+				data-dtype="Boolean"
+				{{checked (lookup ../flags.betterRollsSnS.quickDamage.value i)}}
+			/>
+			{{i}}: {{lookup ../flags.betterRollsSnS.quickDamage.context i}} ({{lookup ../SNS.damageTypes (lookup (lookup ../item.data.data.damage.parts i) 1)}})
+		</label>
+		{{/each}}
+		{{/if}}
+	</div>
+
+
+	{{#if altSecondaryEnabled}}
+	<h3 class="form-header">
+		<label>{{localize "brSnS.settings.quickRollsAltLabel"}}</label>
+	</h3>
+	<!-- <h3 class="form-header" style="font-size:18px;border-top:none;margin-top:-0.25em"><label>{{localize "brSnS.settings.quickRollsAltSubLabel"}}</label></h3> " -->
+
+	<!-- <div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickPrompt}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickPrompt.altValue"
+				value="flags.betterRollsSnS.quickPrompt.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickPrompt.type}}"
+				{{checked flags.betterRollsSnS.quickPrompt.altValue}}
+			/>
+			{{localize "brSnS.settings.prompt"}}</label>
+		{{/if}}
+	</div> -->
+
+	<div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickDesc}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickDesc.altValue"
+				value="flags.betterRollsSnS.quickDesc.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickDesc.type}}"
+				{{checked flags.betterRollsSnS.quickDesc.altValue}}
+			/>
+			{{localize "brSnS.settings.description"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickAttack}} {{#if isAttack}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickAttack.altValue"
+				value="flags.betterRollsSnS.quickAttack.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickAttack.type}}"
+				{{checked flags.betterRollsSnS.quickAttack.altValue}}
+			/>
+			{{localize "brSnS.settings.attackRoll"}}
+		</label>
+		{{/if}}{{/if}}
+
+		{{#if flags.betterRollsSnS.quickSave}} {{#if isSave}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickSave.altValue"
+				value="flags.betterRollsSnS.quickSave.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickSave.type}}"
+				{{checked flags.betterRollsSnS.quickSave.altValue}}
+			/>
+			{{localize "brSnS.settings.saveDC"}}
+		</label>
+		{{/if}}{{/if}}
+
+		{{#if flags.betterRollsSnS.quickCheck}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickCheck.altValue"
+				value="flags.betterRollsSnS.quickCheck.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickCheck.type}}"
+				{{checked flags.betterRollsSnS.quickCheck.altValue}}
+			/>
+			{{localize "brSnS.settings.check"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickProperties}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickProperties.altValue"
+				value="flags.betterRollsSnS.quickProperties.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickProperties.type}}"
+				{{checked flags.betterRollsSnS.quickProperties.altValue}}
+			/>
+			{{localize "brSnS.settings.properties"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickVersatile}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickVersatile.altValue"
+				value="flags.betterRollsSnS.quickVersatile.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickVersatile.type}}"
+				{{checked flags.betterRollsSnS.quickVersatile.altValue}}
+			/>
+			{{localize SNS.weaponProperties.ver}}
+		</label>
+		{{/if}}
+
+		{{#if itemHasTemplate}}
+		{{#if flags.betterRollsSnS.quickTemplate}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickTemplate.altValue"
+				value="flags.betterRollsSnS.quickTemplate.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickTemplate.type}}"
+				{{checked flags.betterRollsSnS.quickTemplate.altValue}}
+			/>
+			{{localize "brSnS.settings.useTemplate"}}</label>
+		{{/if}}
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickOther}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickOther.altValue"
+				value="flags.betterRollsSnS.quickOther.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickOther.type}}"
+				{{checked flags.betterRollsSnS.quickOther.altValue}}
+			/>
+			{{localize "brSnS.settings.otherFormula"}}
+		</label>
+		{{/if}}
+
+		{{#if flags.betterRollsSnS.quickFlavor}}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickFlavor.altValue"
+				value="flags.betterRollsSnS.quickFlavor.altValue"
+				data-dtype="{{flags.betterRollsSnS.quickFlavor.type}}"
+				{{checked flags.betterRollsSnS.quickFlavor.altValue}}
+			/>
+			{{localize "brSnS.settings.quickFlavor"}}
+		</label>
+		{{/if}}
+
+		{{#if canConsume}}
+		<div class="brSnS-consume-box">
+			<span><label class="brSnS-consume-title">{{localize "brSnS.settings.consume"}}</label></span>
+			<span class="brSnS-consume-container">
+			{{#if hasQuantity}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.altValue.quantity"
+						value="flags.betterRollsSnS.quickCharges.altValue.quantity"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.altValue.quantity}}
+					/>
+					{{localize "brSnS.settings.consumeQuantity"}}
+				</label>
+			{{/if}}
+
+			{{#if hasUses}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.altValue.use"
+						value="flags.betterRollsSnS.quickCharges.altValue.use"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.altValue.use}}
+					/>
+					{{localize "brSnS.settings.consumeUses"}}
+				</label>
+			{{/if}}
+
+			{{#if hasResource}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.altValue.resource"
+						value="flags.betterRollsSnS.quickCharges.altValue.resource"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.altValue.resource}}
+					/>
+					{{localize "brSnS.settings.consumeResource"}}
+				</label>
+			{{/if}}
+
+			{{#if hasCharge}}
+				<label class="checkbox">
+					<input
+						type="checkbox"
+						name="flags.betterRollsSnS.quickCharges.altValue.charge"
+						value="flags.betterRollsSnS.quickCharges.altValue.charge"
+						data-dtype="{{flags.betterRollsSnS.quickCharges.type}}"
+						{{checked flags.betterRollsSnS.quickCharges.altValue.charge}}
+					/>
+					{{localize "brSnS.settings.consumeRecharge"}}
+				</label>
+			{{/if}}
+			</span>
+			</div>
+		{{/if}}
+
+	</div>
+	<div class="form-group stacked">
+		{{#if flags.betterRollsSnS.quickDamage}}
+		{{#each flags.betterRollsSnS.quickDamage.altValue as |part i| }}
+		<label class="checkbox">
+			<input
+				type="checkbox"
+				name="flags.betterRollsSnS.quickDamage.altValue.{{i}}"
+				value= "flags.betterRollsSnS.quickDamage.altValue.{{i}}"
+				data-dtype="Boolean"
+				{{checked (lookup ../flags.betterRollsSnS.quickDamage.altValue i)}}
+			/>
+			{{i}}: {{lookup ../flags.betterRollsSnS.quickDamage.context i}} ({{lookup ../SNS.damageTypes (lookup (lookup ../item.data.data.damage.parts i) 1)}})
+		</label>
+		{{/each}}
+		{{/if}}
+	</div>
+	{{/if}}
+
+</div>
